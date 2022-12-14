@@ -1,7 +1,7 @@
 Build works fine when "Runa as Java application" as debug from within Eclipse.
 
 But, when any reference to external library classes are added;
-(here I've used apache commons as its publically avaailble and properly tested and validated - 
+(here I've used apache commons as its publically available and properly tested and validated - 
 if it's not working it's becasue of something I've done wrong, not a fault with the library).
 build still works fine when "Runa as Java application" as debug from within Eclipse.
 
@@ -10,7 +10,34 @@ as soon as the code with the reference to the external library is reached, fails
 Plugin or class not found: "my_company.imagej.my_plugin"
 (java.lang.ClassNotFoundException: my_company.imagej.my_plugin)
 
-This is a test with a minimum complexity file, to work out how to make it work
+This is a test with a minimum complexity file, to work out how to make it work.
+
+==================================================================================
+
+The answer is straightforward, if non-intuitive.
+
+Eclipse/Maven needs the external apache.commons on the build path to do the build, 
+but doesn't actually package the library functions in the .jar it builds.
+
+So you need to copy the library .jar to the ImageJ/plugins directory, too.
+
+It is possible to get Eclipse to package the library, too, see
+
+https://list.nih.gov/cgi-bin/wa.exe?A2=ind1501&L=IMAGEJ&P=R20983&u=48400
+
+and
+
+https://www.itcodar.com/java/how-to-create-a-jar-with-external-libraries-included-in-eclipse.html
+
+Of the options; packaging the library, packages the whole library, not just the 
+one one or two classes from the library you are using, so can make it very large.  
+And also, uses an Eclipse-special method to do it, that sort of packaging is 
+not Java standard.  So there's potential that it won't work reliably.
+Extracting, just extracts the required classes from the library into your .jar  
+That keep the build .jar small, but, also strips all the license info etc, from the 
+library, so may be in contravention of the library license terms.
+
+So in simple terms, it's less hassle just to plonk the library .jar in the ImageJ plugins directory.
 
 ==================================================================================
 

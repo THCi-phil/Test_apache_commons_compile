@@ -37,8 +37,18 @@ public class Test_Apache_Commons_Compile implements PlugIn {
 			//IJ.log("File open dialog box was cancelled");
 			return;
 		}
-		//
+		IJ.log( "Before the line with the Apache commons library call");
+		
+		//****************************************************************************************
+		//*****  THIS IS THE SINGLE LINE COMMAND THAT CALLS THE APACHE COMMONS LIBRARY ***********
+		//****************************************************************************************
+		
 		String inputDatafileName      = FilenameUtils.removeExtension( od.getFileName() );
+		
+		//****************************************************************************************
+		
+		IJ.log( "After the line with the Apache commons library call");
+		
 		String inputDatafileDirectory = od.getDirectory();
 		String resultsFilesDirectory  = inputDatafileDirectory + inputDatafileName + " Results\\" ;
 		IJ.log("inputDatafileName      = " + inputDatafileName      );		
