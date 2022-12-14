@@ -41,6 +41,31 @@ So in simple terms, it's less hassle just to plonk the library .jar in the Image
 
 ==================================================================================
 
+The second non-intuitive aspect, I found after re-installing new version of Eclipse
+
+When Maven build to .jar worked fine as above, but the Run As Java Application to debug in Eclipse, didn't
+
+Even if you have the Apache Commons library on the build path as a User Library 
+ - that allows Maven to build the .jar OK - but the Run As Java Application fails
+
+The trick is at
+
+https://stackoverflow.com/questions/26313757/add-reference-to-library-in-eclipse
+
+Adding a resource in Eclipse is called adding a library.
+What you do is:
+1. Right Click on your project
+2. Click Properties
+3. Click Java Build Path
+4. Click Add External Jars (Make sure you are in the Libraries Tab)
+5. Find your file in your computer
+6. Click Ok, then Ok again
+7. You're done!
+
+Eclipse then adds them to a new folder "Referenced Libraries" in the Package Explorer
+and the Run As Java Application option works again.
+
+==================================================================================
 
 This is an edited version of https://github.com/imagej/example-legacy-plugin/
 
